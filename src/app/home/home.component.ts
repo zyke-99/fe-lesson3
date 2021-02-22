@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { PostService } from '../post.service';
 import {Post} from "../shared/post";
 import {postList} from "../shared/post-list";
 
@@ -10,11 +11,11 @@ import {postList} from "../shared/post-list";
 export class HomeComponent implements OnInit {
   posts: Post[];
 
-  constructor() {
+  constructor(private postService: PostService) {
   }
 
   ngOnInit(): void {
-    this.posts = postList;
+    this.posts = this.postService.loadPosts().subscribe(posts=>{});
   }
 
 }
